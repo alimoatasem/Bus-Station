@@ -18,61 +18,63 @@ import javafx.stage.Stage;
  */
 
 /**
- *
  * @author hitman
  */
 public class PassengerProfile {
     Stage stage;
     Scene scene;
-    Passenger passenger;
-    
-    public PassengerProfile(Stage stage){
-        this.stage=stage;
+    PassengerLogin passengerLogin;
+
+    public PassengerProfile(Stage stage) {
+        this.stage = stage;
     }
-    public void prepareScene(){
-        
-        Label source=new Label("Source:");
-        Label destination=new Label("Destination:");
-        TextField source1=new TextField();
-        TextField destination1=new TextField();
-        
-        ListView<String> list=new ListView<String>();
-        ObservableList<String> vehicles=FXCollections.observableArrayList(
-        "bus.station.vehicles.Bus","Mini bus.station.vehicles.Bus","Private Car");
+
+    public void prepareScene() {
+
+        Label source = new Label("Source:");
+        Label destination = new Label("Destination:");
+        TextField source1 = new TextField();
+        TextField destination1 = new TextField();
+
+        ListView<String> list = new ListView<String>();
+        ObservableList<String> vehicles = FXCollections.observableArrayList(
+                "bus.station.vehicles.Bus", "Mini bus.station.vehicles.Bus", "Private Car");
         list.setItems(vehicles);
-        
-        ListView<String> list1=new ListView<String>();
-        ObservableList<String> trip=FXCollections.observableArrayList(
-        "Single","Round");
-        list1.setItems(trip); 
-        
-        GridPane grid=new GridPane();
-        grid.add(source,0,0);
-        grid.add(destination,1,0);
-        grid.add(source1,0,1);
-        grid.add(destination1,1,1);
-        grid.add(list,0,2);
-        grid.add(list1,1,2);
-        
-        list.setPrefSize(100,70);
-        list1.setPrefSize(100,70);
-        
-        
-        list.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+        ListView<String> list1 = new ListView<String>();
+        ObservableList<String> trip = FXCollections.observableArrayList(
+                "Single", "Round");
+        list1.setItems(trip);
+
+        GridPane grid = new GridPane();
+        grid.add(source, 0, 0);
+        grid.add(destination, 1, 0);
+        grid.add(source1, 0, 1);
+        grid.add(destination1, 1, 1);
+        grid.add(list, 0, 2);
+        grid.add(list1, 1, 2);
+
+        list.setPrefSize(100, 70);
+        list1.setPrefSize(100, 70);
+
+
+        list.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("clicked on:"+list.getSelectionModel().getSelectedItem());
+                System.out.println("clicked on:" + list.getSelectionModel().getSelectedItem());
             }
-            
+
         });
-        
-        scene=new Scene(grid,600,400);
+
+        scene = new Scene(grid, 600, 400);
     }
-    public Scene getScene(){
+
+    public Scene getScene() {
         return scene;
     }
-    public void setPassenger(Passenger passenger){
-        this.passenger=passenger;
+
+    public void setPassengerLogin(PassengerLogin passengerLogin) {
+        this.passengerLogin = passengerLogin;
     }
-    
+
 }

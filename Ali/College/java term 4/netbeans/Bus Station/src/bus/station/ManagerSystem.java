@@ -12,33 +12,32 @@ import javafx.stage.Stage;
  */
 
 /**
- *
  * @author hitman
  */
 public class ManagerSystem {
     Stage stage;
     Scene scene;
-    Employee employee;
-    
-    
-    public ManagerSystem(Stage stage){
-        this.stage=stage;
+    EmployeeSelect employeeSelect;
+
+
+    public ManagerSystem(Stage stage) {
+        this.stage = stage;
     }
-    
-    public void prepareScene(){
-        Button boi=new Button("boi");
-        
-        GridPane grid=new GridPane();
-        grid.add(boi,0,0);
-        
-        scene=new Scene(grid,600,400);
+
+    public void prepareScene() {
+        Button boi = new Button("boi");
+
+        GridPane grid = new GridPane();
+        grid.add(boi, 0, 0);
+
+        scene = new Scene(grid, 600, 400);
     }
-    
-    public Scene getScene(){
+
+    public Scene getScene() {
         return scene;
     }
-    
-    public void setEmployee(Employee employee){
-        this.employee=employee;
+
+    public void setEmployeeSelect(EmployeeSelect employeeSelect) {
+        this.employeeSelect = employeeSelect;
     }
 }

@@ -1,6 +1,6 @@
 package bus.station.vehicles;
 
-public class Bus extends Vehicle {
+public class Bus extends Vehicles {
 
     private int seats;
 

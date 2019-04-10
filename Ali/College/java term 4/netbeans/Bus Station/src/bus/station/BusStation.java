@@ -6,14 +6,14 @@
 package bus.station;
 
 import bus.station.filesManager.FilesManager;
+import bus.station.users.Passenger;
+import bus.station.vehicles.Vehicles;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.util.Formatter;
-import java.util.HashMap;
 
 /**
- *
  * @author hitman
  */
 public class BusStation extends Application {
@@ -27,39 +27,40 @@ public class BusStation extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Bus Station");
 
         //reading files
-        HashMap vehicles = FilesManager.readVehicles();
+        Vehicles.vehiclesDictionary = FilesManager.readVehicles();
+        Passenger.passengersDictionary = FilesManager.readPassengers();
 
+        primaryStage.setTitle("Bus Station");
 
-        MainMenu mainMenu=new MainMenu(primaryStage);
-        Passenger passenger=new Passenger(primaryStage);
-        Employee employee=new Employee(primaryStage);
-        PassengerProfile profile=new PassengerProfile(primaryStage);
-        ManagerSystem system=new ManagerSystem(primaryStage);
-        
+        MainMenu mainMenu = new MainMenu(primaryStage);
+        PassengerLogin passengerLogin = new PassengerLogin(primaryStage);
+        EmployeeSelect employeeSelect = new EmployeeSelect(primaryStage);
+        PassengerProfile profile = new PassengerProfile(primaryStage);
+        ManagerSystem system = new ManagerSystem(primaryStage);
+
         mainMenu.prepareScene();
-        passenger.prepareScene();
-        employee.prepareScene();
+        passengerLogin.prepareScene();
+        employeeSelect.prepareScene();
         profile.prepareScene();
         system.prepareScene();
-        
-        mainMenu.setPassenger(passenger);
-        passenger.setmainMenu(mainMenu);
-        
-        mainMenu.setEmployee(employee);
-        employee.setmainMenu(mainMenu);
-        
-        passenger.setPassengerProfile(profile);
-        profile.setPassenger(passenger);
-        
-        employee.setManagerSystem(system);
-        system.setEmployee(employee);
-        
+
+        mainMenu.setPassengerLogin(passengerLogin);
+        passengerLogin.setmainMenu(mainMenu);
+
+        mainMenu.setEmployeeSelect(employeeSelect);
+        employeeSelect.setmainMenu(mainMenu);
+
+        passengerLogin.setPassengerProfile(profile);
+        profile.setPassengerLogin(passengerLogin);
+
+        employeeSelect.setManagerSystem(system);
+        system.setEmployeeSelect(employeeSelect);
+
         primaryStage.setScene(mainMenu.getScene());
-        
+
         primaryStage.show();
     }
-    
+
 }
