@@ -5,8 +5,12 @@
  */
 package bus.station;
 
+import bus.station.filesManager.FilesManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import java.util.Formatter;
+import java.util.HashMap;
 
 /**
  *
@@ -24,7 +28,11 @@ public class BusStation extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("BusStation");
-    
+
+        //reading files
+        HashMap vehicles = FilesManager.readVehicles();
+
+
         MainMenu mainMenu=new MainMenu(primaryStage);
         Passenger passenger=new Passenger(primaryStage);
         Employee employee=new Employee(primaryStage);
