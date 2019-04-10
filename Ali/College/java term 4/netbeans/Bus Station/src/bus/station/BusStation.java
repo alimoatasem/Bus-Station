@@ -27,7 +27,7 @@ public class BusStation extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("BusStation");
+        primaryStage.setTitle("Bus Station");
 
         //reading files
         HashMap vehicles = FilesManager.readVehicles();

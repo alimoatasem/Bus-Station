@@ -38,7 +38,7 @@ public class PassengerProfile {
         
         ListView<String> list=new ListView<String>();
         ObservableList<String> vehicles=FXCollections.observableArrayList(
-        "Bus","Mini Bus","Private Car");
+        "bus.station.vehicles.Bus","Mini bus.station.vehicles.Bus","Private Car");
         list.setItems(vehicles);
         
         ListView<String> list1=new ListView<String>();
