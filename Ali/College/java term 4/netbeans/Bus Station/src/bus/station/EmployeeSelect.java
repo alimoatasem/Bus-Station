@@ -57,8 +57,6 @@ public class EmployeeSelect {
         this.system = system;
     }
 
-    void setmainMenu(MainMenu mainMenu) {
-    }
 
 
 }

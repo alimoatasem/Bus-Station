@@ -1,9 +1,9 @@
 package bus.station.filesManager;
 
 import bus.station.users.Passenger;
+import bus.station.vehicles.Vehicle;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
-import bus.station.vehicles.Vehicles;
 
 import java.io.FileReader;
 import java.util.HashMap;
@@ -11,9 +11,9 @@ import java.util.HashMap;
 
 public class FilesManager {
 
-    public static HashMap<Integer, Vehicles> readVehicles() {
+    public static HashMap<Integer, Vehicle> readVehicles() {
 
-        HashMap<Integer, Vehicles> hashMap = new HashMap<>();
+        HashMap<Integer, Vehicle> hashMap = new HashMap<>();
 
         try {
 
@@ -24,12 +24,11 @@ public class FilesManager {
             //read line by line till null
             while ((nextRecord = csvReader.readNext()) != null) {
 
-                System.out.println(nextRecord[0] + nextRecord[1]);
-                Vehicles vehicles = Vehicles.createType(nextRecord[1]);
-                vehicles.setNumber(Integer.parseInt(nextRecord[0]));
-                vehicles.reserve(Integer.parseInt(nextRecord[2]));
+                Vehicle vehicle = Vehicle.createType(nextRecord[1]);
+                vehicle.setNumber(Integer.parseInt(nextRecord[0]));
+                vehicle.reserve(Integer.parseInt(nextRecord[2]));
 
-                hashMap.put(Integer.parseInt(nextRecord[0]), vehicles);
+                hashMap.put(Integer.parseInt(nextRecord[0]), vehicle);
 
             }
         }
@@ -38,7 +37,6 @@ public class FilesManager {
         }
         return hashMap;
     }
-
 
     public static HashMap<String, Passenger> readPassengers() {
 
@@ -56,8 +54,6 @@ public class FilesManager {
 
             //read line by line till null
             while ((nextRecord = csvReader.readNext()) != null) {
-
-                System.out.println(nextRecord[0] + nextRecord[1] + nextRecord[2]);
 
                 passenger.setId(nextRecord[0]);
                 passenger.setUserName(nextRecord[1]);

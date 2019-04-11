@@ -2,29 +2,28 @@ package bus.station.vehicles;
 
 import java.util.HashMap;
 
-public abstract class Vehicles {
+public abstract class Vehicle {
 
-    public static HashMap<Integer, Vehicles> vehiclesDictionary;
+    public static HashMap<Integer, Vehicle> vehiclesDictionary;
 
     private int number;
     private int reserved = 0;
 
-    static String getType(Vehicles vehicles) {
+    static String getType(Vehicle vehicle) {
 
-        if (vehicles instanceof Bus) {
+        if (vehicle instanceof Bus) {
             return "bus";
         }
-        if (vehicles instanceof MiniBus) {
+        if (vehicle instanceof MiniBus) {
             return "minibus";
         }
-        if (vehicles instanceof PrivateCar) {
+        if (vehicle instanceof PrivateCar) {
             return "private car";
         }
-
         return "unknown";
     }
 
-    public static Vehicles createType(String type) {
+    public static Vehicle createType(String type) {
         switch (type) {
             case "bus":
                 return new Bus();

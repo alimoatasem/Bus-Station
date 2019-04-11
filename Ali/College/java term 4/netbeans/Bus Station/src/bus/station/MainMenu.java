@@ -31,8 +31,8 @@ public class MainMenu {
 
 
         Label welcome = new Label("Welcome to Bus Station");
-        Button passenger1 = new Button("PassengerLogin");
-        Button employee1 = new Button("EmployeeSelect");
+        Button passenger1 = new Button("User");
+        Button employee1 = new Button("Employee");
 
         GridPane grid = new GridPane();
 

@@ -7,7 +7,7 @@ package bus.station;
 
 import bus.station.filesManager.FilesManager;
 import bus.station.users.Passenger;
-import bus.station.vehicles.Vehicles;
+import bus.station.vehicles.Vehicle;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -29,8 +29,10 @@ public class BusStation extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         //reading files
-        Vehicles.vehiclesDictionary = FilesManager.readVehicles();
+        Vehicle.vehiclesDictionary = FilesManager.readVehicles();
         Passenger.passengersDictionary = FilesManager.readPassengers();
+
+
 
         primaryStage.setTitle("Bus Station");
 
@@ -50,7 +52,7 @@ public class BusStation extends Application {
         passengerLogin.setmainMenu(mainMenu);
 
         mainMenu.setEmployeeSelect(employeeSelect);
-        employeeSelect.setmainMenu(mainMenu);
+        employeeSelect.setMainMenu(mainMenu);
 
         passengerLogin.setPassengerProfile(profile);
         profile.setPassengerLogin(passengerLogin);
