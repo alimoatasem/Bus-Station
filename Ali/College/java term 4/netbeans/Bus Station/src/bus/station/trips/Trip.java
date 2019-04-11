@@ -57,4 +57,5 @@ public class Trip {
     public void setDriver(Driver driver) {
         this.driver = driver;
     }
+
 }
