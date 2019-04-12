@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public abstract class Employee implements User {
 
-    public static HashMap<String, Employee> DriversDictionary;
-    public static HashMap<String, Employee> ManagersDictionary;
+    public static HashMap<String, Driver> DriversDictionary;
+    public static HashMap<String, Manager> ManagersDictionary;
 
     private String userName;
     private String password;

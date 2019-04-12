@@ -6,11 +6,16 @@
 package bus.station;
 
 import bus.station.filesManager.FilesManager;
+import bus.station.trips.Trip;
+import bus.station.users.Driver;
 import bus.station.users.Passenger;
 import bus.station.vehicles.Vehicle;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.awt.print.Book;
+import java.security.cert.TrustAnchor;
 import java.util.Formatter;
 
 /**
@@ -27,42 +32,18 @@ public class BusStation extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         //reading files
         Vehicle.vehiclesDictionary = FilesManager.readVehicles();
+        Trip.tripsDictionary = FilesManager.readTrips();  // must be after vehicles and drivers
         Passenger.passengersDictionary = FilesManager.readPassengers();
 
-
-
-        primaryStage.setTitle("Bus Station");
-
-        MainMenu mainMenu = new MainMenu(primaryStage);
-        PassengerLogin passengerLogin = new PassengerLogin(primaryStage);
-        EmployeeSelect employeeSelect = new EmployeeSelect(primaryStage);
-        PassengerProfile profile = new PassengerProfile(primaryStage);
-        ManagerSystem system = new ManagerSystem(primaryStage);
-
-        mainMenu.prepareScene();
-        passengerLogin.prepareScene();
-        employeeSelect.prepareScene();
-        profile.prepareScene();
-        system.prepareScene();
-
-        mainMenu.setPassengerLogin(passengerLogin);
-        passengerLogin.setmainMenu(mainMenu);
-
-        mainMenu.setEmployeeSelect(employeeSelect);
-        employeeSelect.setMainMenu(mainMenu);
-
-        passengerLogin.setPassengerProfile(profile);
-        profile.setPassengerLogin(passengerLogin);
-
-        employeeSelect.setManagerSystem(system);
-        system.setEmployeeSelect(employeeSelect);
-
-        primaryStage.setScene(mainMenu.getScene());
-
-        primaryStage.show();
+        SwingUtilities.invokeLater(() -> {
+            ViewTrips viewTrips = new ViewTrips();
+            BookOrView bookOrView = new BookOrView(viewTrips);
+            Login login = new Login(bookOrView);
+            login.setVisible(true);
+        });
     }
 
 }
