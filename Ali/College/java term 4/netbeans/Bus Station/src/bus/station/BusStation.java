@@ -11,6 +11,9 @@ import bus.station.vehicles.Vehicle;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.awt.print.Book;
+import java.security.cert.TrustAnchor;
 import java.util.Formatter;
 
 /**
@@ -27,42 +30,17 @@ public class BusStation extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         //reading files
         Vehicle.vehiclesDictionary = FilesManager.readVehicles();
         Passenger.passengersDictionary = FilesManager.readPassengers();
 
+        SwingUtilities.invokeLater(() -> {
 
-
-        primaryStage.setTitle("Bus Station");
-
-        MainMenu mainMenu = new MainMenu(primaryStage);
-        PassengerLogin passengerLogin = new PassengerLogin(primaryStage);
-        EmployeeSelect employeeSelect = new EmployeeSelect(primaryStage);
-        PassengerProfile profile = new PassengerProfile(primaryStage);
-        ManagerSystem system = new ManagerSystem(primaryStage);
-
-        mainMenu.prepareScene();
-        passengerLogin.prepareScene();
-        employeeSelect.prepareScene();
-        profile.prepareScene();
-        system.prepareScene();
-
-        mainMenu.setPassengerLogin(passengerLogin);
-        passengerLogin.setmainMenu(mainMenu);
-
-        mainMenu.setEmployeeSelect(employeeSelect);
-        employeeSelect.setMainMenu(mainMenu);
-
-        passengerLogin.setPassengerProfile(profile);
-        profile.setPassengerLogin(passengerLogin);
-
-        employeeSelect.setManagerSystem(system);
-        system.setEmployeeSelect(employeeSelect);
-
-        primaryStage.setScene(mainMenu.getScene());
-
-        primaryStage.show();
+            BookOrView bookOrView = new BookOrView();
+            Login login = new Login(bookOrView);
+            login.setVisible(true);
+        });
     }
 
 }
