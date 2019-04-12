@@ -1,4 +1,5 @@
 package bus.station.users;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -6,6 +7,7 @@ public class Passenger implements User {
 
     //key is username
     public static HashMap<String,Passenger> passengersDictionary;
+
 
     private String userName;
     private String password;
@@ -15,6 +17,7 @@ public class Passenger implements User {
 
     private int bookedTrips;
 
+    private ArrayList<String> trips =  new ArrayList<>();
 
     @Override
     public boolean validate(String name, String password) {
@@ -28,6 +31,9 @@ public class Passenger implements User {
         return validationResult;
     }
 
+    public void bookTrip(String ID) {
+        trips.add(ID);
+    }
 
     public String getUserName() {
         return userName;

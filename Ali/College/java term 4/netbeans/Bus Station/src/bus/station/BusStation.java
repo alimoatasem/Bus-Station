@@ -6,6 +6,8 @@
 package bus.station;
 
 import bus.station.filesManager.FilesManager;
+import bus.station.trips.Trip;
+import bus.station.users.Driver;
 import bus.station.users.Passenger;
 import bus.station.vehicles.Vehicle;
 import javafx.application.Application;
@@ -33,11 +35,12 @@ public class BusStation extends Application {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         //reading files
         Vehicle.vehiclesDictionary = FilesManager.readVehicles();
+        Trip.tripsDictionary = FilesManager.readTrips();  // must be after vehicles and drivers
         Passenger.passengersDictionary = FilesManager.readPassengers();
 
         SwingUtilities.invokeLater(() -> {
-
-            BookOrView bookOrView = new BookOrView();
+            ViewTrips viewTrips = new ViewTrips();
+            BookOrView bookOrView = new BookOrView(viewTrips);
             Login login = new Login(bookOrView);
             login.setVisible(true);
         });
